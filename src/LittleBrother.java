@@ -39,13 +39,22 @@ public class LittleBrother {
                while((inputText = br.readLine()) != null){
                    outputText = lbp.processInput(inputText);
                    out.println(outputText);
-                   if(outputText.toLowerCase().equals("stop"))
-                       //System.out.println("Break here.");
+                   if(outputText.toLowerCase().equals("stop")){
+                       outputText = lbp.processInput("Disconnected client...");
+                       out.println(outputText);
+                       br.close();
+                       serverSock.close();
+                       clientSock.close();
+
                        break;
+                   }
+                       //System.out.println("Break here.");
+
+
                 }
 
                 //Print Output to client
-                System.out.println("Closing...");
+
               } catch(Exception e) {
                 e.printStackTrace();
             }
