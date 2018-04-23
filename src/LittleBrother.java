@@ -17,12 +17,15 @@ import java.net.Socket;
 public class LittleBrother {
 
     public static void main(String[] args) {
-        int PORT_NUMBER = 4242;
+        final int PORT_NUMBER = 4242;
 
 
             try (
 
                 ServerSocket serverSock = new ServerSocket(PORT_NUMBER);
+                /**
+                 *  Declaration, final or effectively final variable required ??
+                 */
                 //System.out.println("Listening on port " + PORT_NUMBER);
                 Socket clientSock = serverSock.accept();
                 PrintWriter out = new PrintWriter(clientSock.getOutputStream(), true);
@@ -42,18 +45,21 @@ public class LittleBrother {
                    if(outputText.toLowerCase().equals("stop")){
                        outputText = lbp.processInput("Disconnected client...");
                        out.println(outputText);
+
+                       /**
+                        * Q: Since this is in a loop and is written after each iteration, is .flush() needed
+                        * since .close() flushes and closes?
+                        */
                        br.close();
                        serverSock.close();
                        clientSock.close();
 
                        break;
                    }
-                       //System.out.println("Break here.");
 
 
                 }
 
-                //Print Output to client
 
               } catch(Exception e) {
                 e.printStackTrace();
