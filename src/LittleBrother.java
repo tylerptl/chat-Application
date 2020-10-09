@@ -33,7 +33,7 @@ public class LittleBrother {
                 BufferedReader br = new BufferedReader(new InputStreamReader(clientSock.getInputStream()));
 
         ){
-                System.out.println("Connected to " + PORT_NUMBER);
+                System.out.println("Connected to asdf" + PORT_NUMBER);
                 String outputText, inputText;
                 LittleBrotherProtocol lbp = new LittleBrotherProtocol();
                 outputText = lbp.processInput("Welcome little brother...");
